@@ -9,31 +9,36 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import makeSelectLoginData from './selectors';
 import injectReducer from 'utils/injectReducer';
 import injectSaga from 'utils/injectSaga';
-import { fetchData, } from './action';
+import makeSelectLoginData from './selectors';
+import { fetchData } from './action';
 import saga from './saga';
 import reducer from './reducer';
-import {HomePage} from '../../components/HomePage/index';
+import { HomePage } from '../../components/HomePage/index';
 import Loader from '../../Loader';
 
 class HomePageCon extends React.PureComponent {
-    componentDidMount(){
-        this.props.fetchData();
-    }
+  componentDidMount() {
+    this.props.fetchData();
+  }
 
-    render(){
-        const { boardData:{ isLoginDataFetching, isLoginDataFetched} } = this.props;
-        return (
-            <div>
-                { !isLoginDataFetching && isLoginDataFetched ?
-                    <HomePage {...this.props}/>
-                     : <div><Loader/></div> 
-                } 
-            </div>
-          );
-    } 
+  render() {
+    const {
+      boardData: { isLoginDataFetching, isLoginDataFetched },
+    } = this.props;
+    return (
+      <div>
+        {!isLoginDataFetching && isLoginDataFetched ? (
+          <HomePage {...this.props} />
+        ) : (
+          <div>
+            <Loader />
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 const mapStateToProps = createStructuredSelector({

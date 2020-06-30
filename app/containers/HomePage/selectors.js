@@ -2,7 +2,6 @@
  * EBHomepage selectors
  */
 
-
 import { createSelector } from 'reselect';
 import initialJSState from './initialState';
 
