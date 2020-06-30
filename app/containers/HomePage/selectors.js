@@ -1,16 +1,18 @@
 /**
- * Homepage selectors
+ * EBHomepage selectors
  */
 
+
 import { createSelector } from 'reselect';
-import { initialState } from './reducer';
+import initialJSState from './initialState';
 
-const selectHome = state => state.home || initialState;
+const selectHome = state => state.data || initialJSState;
 
-const makeSelectUsername = () =>
+const makeSelectLoginData = () =>
   createSelector(
     selectHome,
-    homeState => homeState.username,
+    ebHomeState => ebHomeState.toJS(),
   );
 
-export { selectHome, makeSelectUsername };
+export default makeSelectLoginData;
+export { selectHome };
